@@ -35,6 +35,9 @@ gem "devise"
 
 gem "faker"
 
+gem "rails_admin"
+gem "cancan"
+
 gem 'rails_12factor', group: :production
 
 group :development do
