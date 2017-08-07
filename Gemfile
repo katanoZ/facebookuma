@@ -42,6 +42,10 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
+#image uploader
+gem "carrierwave"
+gem "rmagick"
+
 gem 'rails_12factor', group: :production
 
 group :development do
