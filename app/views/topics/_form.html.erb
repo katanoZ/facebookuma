@@ -18,7 +18,7 @@
   <%= f.label :content %>
   <%= f.text_area :content %>
   <br>
-  <%= image_tag @topic.image.thumb.url if @topic.image? %>
+  <%= image_tag(@topic.image, alt: @topic.title) if @topic.image.present? %>
   <br>
   <%= f.label :image %>
   <%= f.file_field :image %>
