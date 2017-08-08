@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<%= form_for(@topic, url: choose_new_or_edit) do |f| %>
+<%= form_for(@topic) do |f| %>
 
   <% if @topic.errors.any? %>
     <div id="error_explanation">
@@ -17,6 +17,11 @@
   <br>
   <%= f.label :content %>
   <%= f.text_area :content %>
+  <br>
+  <%= image_tag @topic.image.thumb.url if @topic.image? %>
+  <br>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
   <br>
   <%= f.submit %>
 <% end %>

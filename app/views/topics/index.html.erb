@@ -2,6 +2,7 @@
 <h1>Topic一覧</h1>
 <% @topics.each do |topic| %>
   <p>タイトル：<%= topic.title %></p>
+  <%= image_tag(topic.image, alt: topic.title) if topic.image.present? %>
   <p>内容：<%= topic.content %></p>
   <%= link_to "トピックを編集する", edit_topic_path(topic.id) %>
   <%= link_to "トピックを削除する", topic_path(topic.id), method: :delete, data: { confirm: "本当に削除してもいいですか？" } %>
