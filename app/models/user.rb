@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
-  has_many :topics
+  has_many :topics, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
-  mount_uploader :avatar, AvatarUploader 
+  mount_uploader :avatar, AvatarUploader
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(email: auth.info.email)

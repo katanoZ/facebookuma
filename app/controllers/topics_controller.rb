@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
     @topics = Topic.all
@@ -14,11 +14,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def confirm
-    @topic = Topic.new(topic_params)
-    render :new if @topic.invalid?
-  end
-
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
@@ -28,6 +23,11 @@ class TopicsController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
   def edit

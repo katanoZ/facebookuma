@@ -1,7 +1,9 @@
 <p><%= notice %></p>
 <h1>Topic一覧</h1>
 <% @topics.each do |topic| %>
-  <p>タイトル：<%= topic.title %></p>
+  <%= link_to topic_path(topic) do %>
+    <h4><strong><%= topic.title %></strong></h4>
+  <% end %>
   <%= image_tag(topic.image, alt: topic.title) if topic.image.present? %>
   <p>内容：<%= topic.content %></p>
   <%= link_to "トピックを編集する", edit_topic_path(topic.id) %>
