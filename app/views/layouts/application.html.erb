@@ -16,6 +16,7 @@
         <li><%= link_to 'ログイン', new_user_session_path  %></li>
         <li><%= link_to 'サインアップ', new_user_registration_path %></li>
       <% end %>
+      <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
     </ul>
   </header>
 
