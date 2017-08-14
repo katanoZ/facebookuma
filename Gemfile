@@ -48,6 +48,8 @@ gem "rmagick"
 
 gem 'rails_12factor', group: :production
 
+gem "twitter-bootstrap-rails"
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
