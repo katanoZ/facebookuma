@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Facebookuma</title>
+  <title>facebookuma</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,19 +9,43 @@
 </head>
 <body>
   <header>
-    <ul>
-      <% if user_signed_in? %>
-        <li><%= link_to 'マイページ', edit_user_registration_path %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path  %></li>
-        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-      <% end %>
-      <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href=<%= root_path %> class="navbar-brand"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>  <strong>facebookuma</strong></a>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="nav navbar-nav text-center">
+            <li><a href=<%= topics_path %>><span class="glyphicon glyphicon-th-large"></span> トピック一覧</a></li>
+            <li><a href=<%= new_topic_path %>><span class="glyphicon glyphicon-upload"></span> トピック投稿</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right  text-center">
+            <% if user_signed_in? %>
+              <li><%= link_to 'マイページ', edit_user_registration_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "アカウント登録", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      <div>
+    </nav>
   </header>
 
-  <%= yield %>
-
+  <div class="container">
+    <%= yield %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <footer class="text-muted text-center">
+    <p>©2017 <span class="glyphicon glyphicon-heart"></span><em> facebookuma</em></p>
+  </footer>
 </body>
 </html>

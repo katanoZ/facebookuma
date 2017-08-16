@@ -49,6 +49,7 @@ gem "rmagick"
 gem 'rails_12factor', group: :production
 
 gem "twitter-bootstrap-rails"
+gem "jquery-turbolinks"
 
 group :development do
   gem "letter_opener_web"
