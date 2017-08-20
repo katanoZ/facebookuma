@@ -5,4 +5,8 @@ class Topic < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :title, :content, presence: true
+
+  default_scope {
+    Topic.order(:id)
+  }
 end

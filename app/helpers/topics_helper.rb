@@ -1,9 +1,9 @@
 module TopicsHelper
-  def topic_img(topic)
-    if topic.image?
-      image_tag(topic.image, alt: topic.title) if topic.image?
+  def comment_outline(topic)
+    if topic.comments.present?
+      "（" + topic.comments.count.to_s + "件のコメントがあります。）"
     else
-      image_tag("no_image.png", alt: "no_image")
+      "（コメントはありません。）"
     end
   end
 end

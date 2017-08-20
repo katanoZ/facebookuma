@@ -1,25 +1,28 @@
 module ApplicationHelper
   def profile_img(user, size = :default)
-    if user.avatar?
+    if user.avatar.present?
       case size
       when :small
-        return image_tag(user.avatar, alt: user.name, size: "55x55", class: "img-circle")
+        return image_tag(user.avatar, alt: user.name, size: "50x50")
       else
         return image_tag(user.avatar, alt: user.name)
       end
     end
 
-    unless user.provider.blank?
-      image_url = user.image_url
-    else
-      image_url = "no_image.png"
+    if user.provider.present?
+      case size
+      when :small
+        return image_tag(user.image_url, alt: user.name, size: "50x50")
+      else
+        return image_tag(user.image_url, alt: user.name)
+      end
     end
 
     case size
     when :small
-      image_tag(image_url, alt: user.name, size: "55x55", class: "img-circle")
+      image_tag("no_image.png", alt: user.name, size: "50x50")
     else
-      image_tag(image_url, alt: user.name)
+      image_tag("no_image.png", alt: user.name)
     end
   end
 end
