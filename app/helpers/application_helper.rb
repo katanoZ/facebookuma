@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def profile_img(user, size = :default)
+  def profile_img(user, size: :default)
     if user.avatar.present?
       case size
       when :small

@@ -51,6 +51,8 @@ gem 'rails_12factor', group: :production
 gem "twitter-bootstrap-rails"
 gem "jquery-turbolinks"
 
+gem "pusher"
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
