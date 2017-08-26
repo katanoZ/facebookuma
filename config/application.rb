@@ -25,5 +25,6 @@ module Facebookuma
     config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
 
     config.assets.paths << "#{Rails}/app/assets/fonts"
+    config.assets.precompile += %w(*.eot *.svg *.ttf *.woff)
   end
 end
