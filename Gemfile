@@ -53,6 +53,8 @@ gem "jquery-turbolinks"
 
 gem "pusher"
 
+gem "fog"
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
