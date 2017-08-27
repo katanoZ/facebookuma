@@ -58,6 +58,8 @@ gem 'unicorn'
 
 gem 'font-awesome-rails'
 
+gem "faker"
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
