@@ -5,24 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+include ActionView::Helpers::AssetUrlHelper
 
-100.times do |n|
-  name = Faker::Name.name
-  email = Faker::Internet.email
-  password = "password"
-  User.create!(email: email,
-    name: name,
-    password: password,
-    password_confirmation: password,
-    )
-end
+kuma_names = %w(白くま 黒くま 眠いくま 目つきの悪いくま ジャイアントパンダ)
+kuma_emails = %w(sirokuma@kuma.com kurokuma@kuma.com nemuikuma@kuma.com metukinowaruikuma@kuma.com giantpanda@kuma.com)
+kuma_password = "kuma_password"
+kuma_images = %w(kuma01.png kuma02.png kuma03.png kuma04.png kuma05.png)
 
-1.upto 100 do |n|
-  title = Faker::Book.title
-  content = Faker::Hacker.say_something_smart
-  Topic.create!(
-    title: title,
-    content: content,
-    user_id: n,
-    )
+#kuma_names.size.times do |n|
+kuma_names.size.times do |n|
+  User.create!(name: kuma_names[n], email: kuma_emails[n], password: kuma_password, password_confirmation: kuma_password, image_url: kuma_images[n], uid: User.create_unique_string, provider: "kuma_provider" + n.to_s)
 end

@@ -33,8 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "devise"
 
-gem "faker"
-
 gem "rails_admin"
 gem "cancan"
 
