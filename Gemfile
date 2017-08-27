@@ -58,6 +58,8 @@ gem "fog"
 gem 'dotenv-rails'
 gem 'unicorn'
 
+gem 'font-awesome-rails'
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
