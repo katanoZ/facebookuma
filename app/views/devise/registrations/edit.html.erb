@@ -40,11 +40,11 @@
       <%= f.label :current_password %> <i>(ユーザ情報を変更する場合は、現在のパスワードを入力)</i><br />
       <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
     </div>
-
   <% end %>
-
+  <br>
   <div class="field form-group">
-    <%= profile_img(@user) if profile_img(@user) %><br>
+    <p><b>画像</b></p>
+    <%= profile_img(@user) %><br>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>
