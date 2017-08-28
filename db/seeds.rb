@@ -16,5 +16,16 @@ kuma_array = [
 kuma_password = "kumapass"
 
 kuma_array.each do |kuma|
-  User.create!(name: kuma[:name], email: kuma[:email], password: kuma_password, password_confirmation: kuma_password, image_url: kuma[:image], uid: User.create_unique_string, provider: "kuma_provider")
+  user = User.new
+  user.name = kuma[:name]
+  user.email = kuma[:email]
+  user.password = kuma_password
+  user.password_confirmation = kuma_password
+  user.image_url = kuma[:image]
+  user.uid = User.create_unique_string
+  user.provider = "kuma_provider"
+
+  if user.save
+    user.create_kuma_topic
+  end
 end

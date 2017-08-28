@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Kuma
+
   has_many :topics, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -74,5 +76,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def create_kuma_topic
+    #TODO: 画像をセットする
+    Topic.create(user_id: self.id, title: kuma_title, content: kuma_content)
   end
 end
