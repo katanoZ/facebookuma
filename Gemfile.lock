@@ -106,6 +106,7 @@ GEM
     ffi (1.9.18)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
+    flickraw (0.9.9)
     fog (1.40.0)
       fog-aliyun (>= 0.1.0)
       fog-atmos
@@ -493,6 +494,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  flickraw
   fog
   font-awesome-rails
   jbuilder (~> 2.0)

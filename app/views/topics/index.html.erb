@@ -18,7 +18,9 @@
     <div class="panel-body">
       <p>
         <strong class="h3"><%= topic.title %></strong><hr>
-        <% if topic.image.present? %>
+        <% if topic.img_url.present? %>
+          <img src="<%= topic.img_url %>" alt="<%= topic.title %>" class="img-responsive center-block"><br>
+        <% elsif topic.image.present? %>
           <%= image_tag(topic.image, alt: topic.title, class: "img-responsive center-block") %><br>
         <% end %>
         <%= simple_format(h(topic.content)) %>

@@ -79,7 +79,6 @@ class User < ActiveRecord::Base
   end
 
   def create_kuma_topic
-    #TODO: 画像をセットする
-    Topic.create(user_id: self.id, title: kuma_title, content: kuma_content)
+    Topic.create(user_id: self.id, title: kuma_title, content: kuma_content, img_url: kuma_image)
   end
 end
