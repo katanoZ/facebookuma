@@ -19,7 +19,7 @@ module Kuma
     kuma_contents02 = %W(たのしい ねむい おいしい おもしろい おそろしい かなしい うれしい おいしそう おなかがへった 踊りたい 食べたい 逃げたい 歌をうたう ダンスダンスダンス クマトルネード 冬眠する くまごはん 転がり続ける めでたい レッツ 毛皮が暑い ハングリー 満腹 熊野詣で 熊本県)
     kuma_contents03 = %W|くま くま？ くま！ くまー くまっ くまーーー くまʕ•ᴥ•ʔ くま(ᵔᴥᵔ) くま(￣(工)￣) くまままま・・・ くまくま！ く、くまー くまฅʕ•ᴥ•ʔฅ くまʕ´•ᴥ•`ʔ くまʕ￫ᴥ￩ʔ くまʕ•ɷ•ʔฅ くまʕ•̀ω•́ʔ✧ くまʕ·ᴥ·ʔ♡*:.✧ |
     random = Random.new
-    content = kuma_contents01[random.rand(kuma_contents01.length)] + kuma_contents02[random.rand(kuma_contents02.length)] + kuma_contents03[random.rand(kuma_contents03.length)]
+    content = kuma_contents01[random.rand(kuma_contents01.length)] + kuma_contents02[random.rand(kuma_contents02.length)] + kuma_contents03[random.rand(kuma_contents03.length)] + " " + kuma_contents01[random.rand(kuma_contents01.length)] + kuma_contents02[random.rand(kuma_contents02.length)] + kuma_contents03[random.rand(kuma_contents03.length)]
     return content
   end
 
