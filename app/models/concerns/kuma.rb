@@ -5,21 +5,23 @@ module Kuma
   FlickRaw.api_key = ENV["FLICKER_API_KEY"]
   FlickRaw.shared_secret = ENV["FLICKER_API_SECRET"]
 
+  KUMA_TITLES01 = %W(くま クマ 熊 ベアー BEAR 球磨)
+  KUMA_TITLES02 = %W(人生 日和 生活 大会 会議 画像 戦争 ごはん 学校 ダンス 協会 集団 牧場 大回転 温泉 暴走 元気 体操 精神 パワー)
+  KUMA_TITLES03 = %W(くま くま？ くま！ くまー くまっ くまーーー くまʕ•ᴥ•ʔ くま(ᵔᴥᵔ) くま(￣(工)￣) くまฅʕ•ᴥ•ʔฅ)
+
+  KUMA_CONTENTS01 = %W(最近は この人は あなたは くま会議で くまも歩けば 今日も一日 今日は いつものように 今回は この日はずっと 見れば見るほど よい気分なので この画像を見て そういえば 実を言うと いつも思うのだけど やっぱり)
+  KUMA_CONTENTS02 = %W(たのしい ねむい おいしい おもしろい おそろしい かなしい うれしい おいしそう おなかがへった 踊りたい 食べたい 逃げたい 歌をうたう ダンスダンスダンス クマトルネード 冬眠する くまごはん 転がり続ける めでたい レッツ 毛皮が暑い ハングリー 満腹 熊野詣で 熊本県 くま生活)
+  KUMA_CONTENTS03 = %W|くま くま？ くま！ くまー くまっ くまーーー くまʕ•ᴥ•ʔ くま(ᵔᴥᵔ) くま(￣(工)￣) くまままま・・・ くまくま！ く、くまー くまฅʕ•ᴥ•ʔฅ くまʕ´•ᴥ•`ʔ くまʕ￫ᴥ￩ʔ くまʕ•ɷ•ʔฅ くまʕ•̀ω•́ʔ✧ くまʕ·ᴥ·ʔ♡*:.✧ |
+
   def kuma_title
-    kuma_titles01 = %W(くま クマ 熊 ベアー BEAR 球磨)
-    kuma_titles02 = %W(人生 日和 生活 大会 会議 画像 戦争 ごはん 学校 ダンス 協会 集団 牧場 大回転 温泉 暴走 元気 体操 精神 パワー)
-    kuma_titles03 = %W(くま くま？ くま！ くまー くまっ くまーーー くまʕ•ᴥ•ʔ くま(ᵔᴥᵔ) くま(￣(工)￣) くまฅʕ•ᴥ•ʔฅ)
     random = Random.new
-    title = kuma_titles01[random.rand(kuma_titles01.length)] + kuma_titles02[random.rand(kuma_titles02.length)] + kuma_titles03[random.rand(kuma_titles03.length)]
+    title = KUMA_TITLES01[random.rand(KUMA_TITLES01.length)] + KUMA_TITLES02[random.rand(KUMA_TITLES02.length)] + KUMA_TITLES03[random.rand(KUMA_TITLES03.length)]
     return title
   end
 
   def kuma_content
-    kuma_contents01 = %W(この画像は この人は あなたは くま会議で くまも歩けば 今日も一日 今日は いつものように 今回は この日はずっと 見れば見るほど よい画像なので この画像を見て そういえば 実を言うと)
-    kuma_contents02 = %W(たのしい ねむい おいしい おもしろい おそろしい かなしい うれしい おいしそう おなかがへった 踊りたい 食べたい 逃げたい 歌をうたう ダンスダンスダンス クマトルネード 冬眠する くまごはん 転がり続ける めでたい レッツ 毛皮が暑い ハングリー 満腹 熊野詣で 熊本県)
-    kuma_contents03 = %W|くま くま？ くま！ くまー くまっ くまーーー くまʕ•ᴥ•ʔ くま(ᵔᴥᵔ) くま(￣(工)￣) くまままま・・・ くまくま！ く、くまー くまฅʕ•ᴥ•ʔฅ くまʕ´•ᴥ•`ʔ くまʕ￫ᴥ￩ʔ くまʕ•ɷ•ʔฅ くまʕ•̀ω•́ʔ✧ くまʕ·ᴥ·ʔ♡*:.✧ |
     random = Random.new
-    content = kuma_contents01[random.rand(kuma_contents01.length)] + kuma_contents02[random.rand(kuma_contents02.length)] + kuma_contents03[random.rand(kuma_contents03.length)] + " " + kuma_contents01[random.rand(kuma_contents01.length)] + kuma_contents02[random.rand(kuma_contents02.length)] + kuma_contents03[random.rand(kuma_contents03.length)]
+    content = KUMA_CONTENTS01[random.rand(KUMA_CONTENTS01.length)] + KUMA_CONTENTS02[random.rand(KUMA_CONTENTS02.length)] + KUMA_CONTENTS03[random.rand(KUMA_CONTENTS03.length)] + " " + KUMA_CONTENTS01[random.rand(KUMA_CONTENTS01.length)] + KUMA_CONTENTS02[random.rand(KUMA_CONTENTS02.length)] + KUMA_CONTENTS03[random.rand(KUMA_CONTENTS03.length)]
     return content
   end
 
