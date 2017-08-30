@@ -81,4 +81,18 @@ class User < ActiveRecord::Base
   def create_kuma_topic
     Topic.create(user_id: self.id, title: kuma_title, content: kuma_content, img_url: kuma_image)
   end
+
+  #TODO :コメント処理を書く
+  def create_kuma_comment(topic)
+  end
+
+  def create_kuma_message(recipient)
+    if Conversation.between(self.id, recipient.id).present?
+      conversation = Conversation.between(self.id, recipient.id).first
+    else
+      conversation = Conversation.create({sender_id: self.id, recipient_id: recipient.id})
+    end
+    message = conversation.messages.build({body: kuma_content, user_id: self.id})
+    message.save
+  end
 end
