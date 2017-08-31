@@ -27,11 +27,26 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.build(message_params)
     @message.save
+    execute_kuma_message(@conversation)
     redirect_to conversation_messages_path(@conversation)
   end
 
   private
   def message_params
     params.require(:message).permit(:body, :user_id)
+  end
+
+  def execute_kuma_message(conversation)
+    sender = User.find(conversation.sender_id)
+    recipient = User.find(conversation.recipient_id)
+    if current_user.id == sender.id
+      opponent = User.find(recipient.id)
+    elsif current_user.id == recipient.id
+      opponent = User.find(sender.id)
+    end
+
+    if opponent && opponent.provider == "kuma_provider"
+      opponent.delay(run_at: 10.seconds.from_now).create_kuma_message(current_user)
+    end
   end
 end

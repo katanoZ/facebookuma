@@ -62,6 +62,10 @@ gem "faker"
 
 gem "flickraw"
 
+gem "delayed_job"
+gem "delayed_job_active_record"
+gem "daemons"
+
 group :development do
   gem "letter_opener_web"
   gem "dotenv-rails"
