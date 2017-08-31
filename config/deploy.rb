@@ -18,6 +18,10 @@ set :rbenv_type, :system
 
 set :log_level, :debug
 
+set :delayed_job_workers, 1
+set :delayed_job_roles, [:app]
+set :delayed_job_pid_dir, '/tmp'
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
