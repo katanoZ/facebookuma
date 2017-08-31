@@ -82,8 +82,9 @@ class User < ActiveRecord::Base
     Topic.create(user_id: self.id, title: kuma_title, content: kuma_content, img_url: kuma_image)
   end
 
-  #TODO :コメント処理を書く
   def create_kuma_comment(topic)
+    comment = self.comments.build({topic_id: topic.id, content: kuma_content})
+    comment.save
   end
 
   def create_kuma_message(recipient)

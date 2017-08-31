@@ -1,6 +1,5 @@
 <div class="container">
   <h2>ユーザ一覧</h2>
-  <% binding.pry %>
   <% @users.each do |user| %>
     <% next if user.id == current_user.id %>
     <%= render "person", user:user %>
