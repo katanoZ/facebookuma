@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def self.kuma_schedule
-    kumas = User.where(self.provider: "kuma_provider")
+    kumas = User.where(provider: "kuma_provider")
     kumas.each do |kuma|
       kuma.create_kuma_topic
     end
