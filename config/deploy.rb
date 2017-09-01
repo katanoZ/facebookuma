@@ -22,6 +22,8 @@ set :delayed_job_workers, 1
 set :delayed_job_roles, [:app]
 set :delayed_job_pid_dir, '/tmp'
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do

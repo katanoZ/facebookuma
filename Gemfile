@@ -66,9 +66,10 @@ gem "delayed_job"
 gem "delayed_job_active_record"
 gem "daemons"
 
+gem 'whenever', require: false
+
 group :development do
   gem "letter_opener_web"
-  gem "dotenv-rails"
 end
 
 group :development, :test do

@@ -57,6 +57,14 @@ class User < ActiveRecord::Base
     SecureRandom.uuid
   end
 
+  def self.kuma_schedule
+    kumas = User.where(self.provider: "kuma_provider")
+    kumas.each do |kuma|
+      kuma.create_kuma_topic
+    end
+  end
+
+
   def update_with_password(params, *options)
     if provider.blank?
       super
