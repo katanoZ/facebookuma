@@ -57,7 +57,12 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
   end
 
-  #TODO: current_userをフォローしているくまがコメントを書き込む処理
   def execute_kuma_comment_write(topic)
+    kuma_followers = current_user.followers.find_all{|user| user.provider == "kuma_provider"}
+    return if kuma_followers.blank?
+    random = Random.new
+    kuma_followers.each do |kuma|
+        kuma.delay(run_at: random.rand(60).seconds.from_now).create_kuma_comment(topic)
+    end
   end
 end
