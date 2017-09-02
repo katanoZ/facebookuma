@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       if @comment.save
         flash.now[:notice] = "コメントを投稿しました。"
         format.js { render :index }
-        execute_kuma_comment(@topic)
+        execute_kuma_comment_reply(@topic)
 
         unless @comment.topic.user_id == current_user.id
           Pusher.trigger("user_#{@comment.topic.user_id}_channel", 'comment_created', {
@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
       @topic = Comment.find(params[:id]).topic
     end
 
-    def execute_kuma_comment(topic)
+    def execute_kuma_comment_reply(topic)
       writer = User.find(topic.user_id)
       if writer.provider == "kuma_provider"
         writer.delay(run_at: 10.seconds.from_now).create_kuma_comment(topic)

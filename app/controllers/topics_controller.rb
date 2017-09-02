@@ -18,6 +18,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
     if @topic.save
+      execute_kuma_comment_write(@topic)
       redirect_to topics_path, notice: "トピックを作成しました"
       NoticeMailer.sendmail_topic(@topic).deliver
     else
@@ -54,5 +55,9 @@ class TopicsController < ApplicationController
 
   def set_topic
     @topic = Topic.find(params[:id])
+  end
+
+  #TODO: current_userをフォローしているくまがコメントを書き込む処理
+  def execute_kuma_comment_write(topic)
   end
 end
