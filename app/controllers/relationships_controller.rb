@@ -19,7 +19,8 @@ class RelationshipsController < ApplicationController
   def execute_kuma_relationship(other_user)
     return unless other_user.provider == "kuma_provider"
     unless other_user.following?(current_user)
-      other_user.delay(run_at: 10.seconds.from_now).follow!(current_user)
+      other_user.delay(run_at: 10.seconds.from_now, priority: 1).follow!(current_user)
+      other_user.delay(run_at: 10.seconds.from_now, priority: 10).create_kuma_message(current_user)
     end
   end
 end
