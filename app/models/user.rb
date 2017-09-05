@@ -92,6 +92,15 @@ class User < ActiveRecord::Base
   def create_kuma_comment(topic)
     comment = self.comments.build({topic_id: topic.id, content: kuma_content})
     comment.save
+
+    return if topic.user.provider == "kuma_provider"
+    Notification.create(user_id: topic.user.id, comment_id: comment.id)
+    Pusher.trigger("user_#{comment.topic.user_id}_channel", 'comment_created', {
+        message: 'あなたの作成したブログにコメントが付きました'
+      })
+    Pusher.trigger("user_#{comment.topic.user_id}_channel", 'notification_created', {
+      unread_counts: Notification.where(user_id: comment.topic.user_id, read: false).count
+    })
   end
 
   def create_kuma_message(recipient)

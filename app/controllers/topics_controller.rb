@@ -62,7 +62,7 @@ class TopicsController < ApplicationController
     return if kuma_followers.blank?
     random = Random.new
     kuma_followers.each do |kuma|
-        kuma.delay(run_at: random.rand(60).seconds.from_now).create_kuma_comment(topic)
+      kuma.delay(run_at: random.rand(100).seconds.from_now).create_kuma_comment(topic)
     end
   end
 end
