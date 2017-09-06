@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @topic = @comment.topic
     unless @topic.user_id == @comment.user_id
-      @notification = @comment.notifications.build(user_id: @topic.user.id)
+      @notification = @comment.notifications.build(user_id: @topic.user.id, notification_type: "comment")
     end
 
     respond_to do |format|
@@ -15,11 +15,6 @@ class CommentsController < ApplicationController
         format.js { render :index }
         execute_kuma_comment_reply(@topic)
 
-        unless @comment.topic.user_id == current_user.id
-          Pusher.trigger("user_#{@comment.topic.user_id}_channel", 'comment_created', {
-            message: 'あなたの作成したブログにコメントが付きました'
-          })
-        end
         Pusher.trigger("user_#{@comment.topic.user_id}_channel", 'notification_created', {
           unread_counts: Notification.where(user_id: @comment.topic.user.id, read: false).count
         })

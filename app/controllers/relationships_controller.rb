@@ -5,7 +5,15 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
-    execute_kuma_relationship(@user)
+
+    if @user.provider == "kuma_provider"
+      execute_kuma_relationship(@user)
+    else
+      Notification.create(user_id: @user.id, follower_id: current_user.id, notification_type: "follow")
+      Pusher.trigger("user_#{@user.id}_channel", 'notification_created', {
+        unread_counts: Notification.where(user_id: @user.id, read: false).count
+      })
+    end
     respond_with @user
   end
 
@@ -16,11 +24,15 @@ class RelationshipsController < ApplicationController
   end
 
   private
-  def execute_kuma_relationship(other_user)
-    return unless other_user.provider == "kuma_provider"
-    unless other_user.following?(current_user)
-      other_user.delay(run_at: 10.seconds.from_now, priority: 1).follow!(current_user)
-      other_user.delay(run_at: 10.seconds.from_now, priority: 10).create_kuma_message(current_user)
-    end
+  def execute_kuma_relationship(kuma)
+    return if kuma.following?(current_user)
+    return if Delayed::Job.where(queue: "#{kuma.id.to_s}_follows_#{current_user.id.to_s}").present?
+
+    kuma.delay(run_at: 30.seconds.from_now, priority: 1, queue: "#{kuma.id.to_s}_follows_#{current_user.id.to_s}").follow!(current_user)
+
+    Notification.delay(run_at: 31.seconds.from_now, priority: 2).create(user_id: current_user.id, follower_id: kuma.id, notification_type: "follow")
+    Pusher.delay(run_at: 32.seconds.from_now, priority: 3).trigger("user_#{@current_user.id}_channel", 'notification_created', {
+      unread_counts: Notification.where(user_id: current_user.id, read: false).count
+    })
   end
 end

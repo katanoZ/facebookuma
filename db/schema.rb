@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831114317) do
+ActiveRecord::Schema.define(version: 20170906083920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(version: 20170831114317) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.boolean  "read",       default: false
+    t.boolean  "read",              default: false
     t.integer  "user_id"
     t.integer  "comment_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "notification_type"
+    t.integer  "follower_id"
   end
 
   add_index "notifications", ["comment_id"], name: "index_notifications_on_comment_id", using: :btree

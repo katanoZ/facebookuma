@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
   end
 
   private
