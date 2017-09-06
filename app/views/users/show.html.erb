@@ -5,6 +5,13 @@
     <%= @user.name %><br>
     <%= @user.email %><br>
     <%= link_to "ユーザ一覧に戻る", users_path, class: "btn btn-default margin-top10" %><br>
+    <br>
+    <p class="h3">自己紹介</p>
+    <% if @user.description.blank? %>
+      <p class="text-muted">設定されていません。</p>
+    <% else %>
+      <p><%= @user.description %></p>
+    <% end %>
     <hr>
     <%= render "followed_users", user:@user %><br>
     <hr>

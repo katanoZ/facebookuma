@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 kuma_array = [
-  {name: "白くま", email: "sirokuma@kuma.com", image: "kuma01.png"},
-  {name: "黒くま", email: "kurokuma@kuma.com", image: "kuma02.png"},
-  {name: "眠いくま", email: "nemuikuma@kuma.com", image: "kuma03.png"},
-  {name: "目つきの悪いくま", email: "metukinowaruikuma@kuma.com", image: "kuma04.png"},
-  {name: "ジャイアントパンダ", email: "giantpanda@kuma.com", image: "kuma05.png"},
+  {name: "白くま", email: "sirokuma@kuma.com", image: "kuma01.png", description: "北極とかにいます。体毛に藻が生えるとミドリグマと呼ばれます。"},
+  {name: "黒くま", email: "kurokuma@kuma.com", image: "kuma02.png", description: "黒くまです。動くものを追いかけるくまー。"},
+  {name: "眠いくま", email: "nemuikuma@kuma.com", image: "kuma03.png", description: "おやすみなさい。"},
+  {name: "目つきの悪いくま", email: "metukinowaruikuma@kuma.com", image: "kuma04.png", description: "目つきは悪いけどこころは優しいくまです。たぶん。"},
+  {name: "ジャイアントパンダ", email: "giantpanda@kuma.com", image: "kuma05.png", description: "竹食などの草食傾向が比較的高いが、機会があれば生肉を拒まない。"},
 ]
 kuma_password = "kumapass"
 
@@ -24,6 +24,7 @@ kuma_array.each do |kuma|
   user.image_url = kuma[:image]
   user.uid = User.create_unique_string
   user.provider = "kuma_provider"
+  user.description = kuma[:description]
 
   if user.save
     user.create_kuma_topic
