@@ -28,10 +28,10 @@ class RelationshipsController < ApplicationController
     return if kuma.following?(current_user)
     return if Delayed::Job.where(queue: "#{kuma.id.to_s}_follows_#{current_user.id.to_s}").present?
 
-    kuma.delay(run_at: 30.seconds.from_now, priority: 1, queue: "#{kuma.id.to_s}_follows_#{current_user.id.to_s}").follow!(current_user)
+    kuma.delay(run_at: 10.seconds.from_now, priority: 1, queue: "#{kuma.id.to_s}_follows_#{current_user.id.to_s}").follow!(current_user)
 
-    Notification.delay(run_at: 31.seconds.from_now, priority: 2).create(user_id: current_user.id, follower_id: kuma.id, notification_type: "follow")
-    Pusher.delay(run_at: 32.seconds.from_now, priority: 3).trigger("user_#{@current_user.id}_channel", 'notification_created', {
+    Notification.delay(run_at: 11.seconds.from_now, priority: 2).create(user_id: current_user.id, follower_id: kuma.id, notification_type: "follow")
+    Pusher.delay(run_at: 12.seconds.from_now, priority: 3).trigger("user_#{@current_user.id}_channel", 'notification_created', {
       unread_counts: Notification.where(user_id: current_user.id, read: false).count
     })
   end

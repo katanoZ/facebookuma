@@ -19,6 +19,11 @@
       var channel = pusher.subscribe("user_<%= current_user.id %>_channel");
       channel.bind('notification_created', function(data) {
         $('#unread_count').html(data.unread_counts);
+        if (data.unread_counts > 0){
+          $('#bell_color').css({"color": "orange"});
+        } else{
+          $('#bell_color').css({"color": "gray"});
+        };
       });
     </script>
   <% end %>
@@ -49,7 +54,11 @@
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li>
                 <%= link_to notifications_index_path do %>
-                  <i class="fa fa-bell fa-lg"><span id="unread_count"><%= @notifications_count %></span></i>
+                  <% if @notifications_count > 0 %>
+                    <i id="bell_color" class="fa fa-bell fa-lg fa_orange"><span id="unread_count"><%= @notifications_count %></span></i>
+                  <% else %>
+                    <i id="bell_color" class="fa fa-bell fa-lg fa_gray"><span id="unread_count"><%= @notifications_count %></span></i>
+                  <% end %>
                 <% end %>
               </li>
             <% else %>
