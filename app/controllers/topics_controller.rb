@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.all.includes(:comments)
+    user_ids = current_user.followed_users.ids
+    @topics = Topic.where(user_id: user_ids).includes(:comments)
   end
 
   def new
