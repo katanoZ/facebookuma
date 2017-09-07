@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
     @comment = @topic.comments.build
     @comments = @topic.comments
     Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
+    @notifications_count = Notification.where(user_id: current_user.id).where(read: false).count
   end
 
   def edit
@@ -62,7 +63,7 @@ class TopicsController < ApplicationController
     return if kuma_followers.blank?
     random = Random.new
     kuma_followers.each do |kuma|
-      kuma.delay(run_at: random.rand(100).seconds.from_now).create_kuma_comment(topic)
+      kuma.delay(run_at: random.rand(60).seconds.from_now).create_kuma_comment(topic)
     end
   end
 end
