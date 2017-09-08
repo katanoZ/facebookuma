@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
           unread_counts: Notification.where(user_id: @comment.topic.user.id, read: false).count
         })
       else
-
+        format.js { render :index }
       end
     end
   end

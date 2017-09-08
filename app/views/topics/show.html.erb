@@ -1,24 +1,46 @@
-<div class="child row">
-  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-    <div class="blog-text">
-      <p class="left"><strong>タイトル</strong></p>
-      <p class="left"><%= @topic.title %></p>
-      <p class="left"><strong>内容</strong></p>
-      <p class="left"><%= @topic.content %></p>
-      <p class="right">
-        <strong>作成時間:</strong>
-        <%= @topic.created_at.strftime("%y/%m/%d %p %l:%M") %>
-      </p>
-    </div>
-    <p>コメント一覧</p>
-    <p id="notice" class="text-muted h3"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success alert-dismissible">
+    <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p><%= notice %><%= alert %></p>
+  </div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+        <%= profile_img(@topic.user, size: :small) %>&nbsp;&nbsp;投稿者：<%= @topic.user.name %>
+        <br class="visible-xs"><br class="visible-xs">
+        （<%= @topic.created_at.in_time_zone('Tokyo').strftime("%Y年%m月%d日 %H時%M分%S秒") %>）
+    </h2>
+  </div>
+  <div class="panel-body">
+    <p>
+      <strong class="h3"><%= @topic.title %></strong><hr>
+      <% if @topic.img_url.present? %>
+        <img src="<%= @topic.img_url %>" alt="<%= @topic.title %>" class="img-responsive center-block"><br>
+      <% elsif @topic.image.present? %>
+        <%= image_tag(@topic.image, alt: @topic.title, class: "img-responsive center-block") %><br>
+      <% end %>
+      <%= simple_format(h(@topic.content)) %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <p class="h3">コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic } %>
     </div>
     <%= render partial: 'comments/form', locals: { comment: @comment, topic: @topic } %>
-    <% if current_user.id == @topic.user_id %>
-      <%= link_to '編集', edit_topic_path(@topic) %> |
-    <% end %>
-    <%= link_to '戻る', topics_path %>
+    <p class="h4 margin-top15px">
+      <% if current_user.id == @topic.user_id %>
+        <%= link_to 'トピック編集', edit_topic_path(@topic) %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <% end %>
+      <%= link_to '一覧に戻る', topics_path %>
+    </p>
   </div>
 </div>
+
+<section>
+  <div id="page-top-btn" class="page-top-btn">
+      <p><a class="move-page-top" id="move-page-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲</a></p>
+  </div>
+</section>

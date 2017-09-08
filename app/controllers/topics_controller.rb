@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
 
   def index
     user_ids = current_user.followed_users.ids
+    user_ids << current_user.id
     @topics = Topic.where(user_id: user_ids).includes(:comments)
   end
 

@@ -14,3 +14,12 @@
  *= require_self
  *= require font-awesome
  */
+ .margin-top5px {
+     margin-top: 5px;
+ }
+ .margin-top8px {
+     margin-top: 8px;
+ }
+ .margin-top15px {
+     margin-top: 15px;
+ }

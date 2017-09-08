@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 kuma_array = [
-  {name: "白くま", email: "sirokuma@kuma.com", image: "kuma01.png", description: "北極とかにいます。体毛に藻が生えるとミドリグマと呼ばれます。"},
+  {name: "白くま", email: "sirokuma@kuma.com", image: "kuma01.png", description: "寒冷地に適応した白くまです。体毛に藻が生えるとミドリグマと呼ばれます。"},
   {name: "黒くま", email: "kurokuma@kuma.com", image: "kuma02.png", description: "黒くまです。動くものを追いかけるくまー。"},
   {name: "眠いくま", email: "nemuikuma@kuma.com", image: "kuma03.png", description: "おやすみなさい。"},
   {name: "目つきの悪いくま", email: "metukinowaruikuma@kuma.com", image: "kuma04.png", description: "目つきは悪いけどこころは優しいくまです。たぶん。"},
