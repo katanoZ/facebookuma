@@ -44,7 +44,7 @@
   <br>
   <div class="field form-group">
     <b>画像</b>
-    <p><%= profile_img(@user) %></p>
+    <p class="resizeimage"><%= profile_img(@user) %></p>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>
