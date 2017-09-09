@@ -43,8 +43,8 @@
   <% end %>
   <br>
   <div class="field form-group">
-    <p><b>画像</b></p>
-    <%= profile_img(@user) %><br>
+    <b>画像</b>
+    <p><%= profile_img(@user) %></p>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>

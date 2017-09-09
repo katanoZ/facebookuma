@@ -7,7 +7,7 @@ module ApplicationHelper
       when :medium
         return image_tag(user.avatar, alt: user.name, size: "180x180", class: "img-rounded")
       else
-        return image_tag(user.avatar, alt: user.name)
+        return image_tag(user.avatar, alt: user.name, class: "max750px img-responsive")
       end
     end
 
@@ -18,7 +18,7 @@ module ApplicationHelper
       when :medium
         return image_tag(user.image_url, alt: user.name, size: "180x180", class: "img-rounded")
       else
-        return image_tag(user.image_url, alt: user.name)
+        return image_tag(user.image_url, alt: user.name, class: "max750px img-responsive")
       end
     end
 
@@ -28,7 +28,7 @@ module ApplicationHelper
     when :medium
       image_tag("no_image.png", alt: user.name, size: "180x180", class: "img-rounded")
     else
-      image_tag("no_image.png", alt: user.name)
+      image_tag("no_image.png", alt: user.name, class: "max750px img-responsive")
     end
   end
 end

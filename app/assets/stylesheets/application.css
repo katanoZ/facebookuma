@@ -41,3 +41,7 @@
 .margin-bottom5px {
     margin-bottom: 5px;
 }
+.max750px {
+  max-width: 750px;
+  max-height: 750px;
+}
