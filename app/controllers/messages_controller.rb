@@ -26,8 +26,9 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.build(message_params)
-    @message.save
-    execute_kuma_message(@conversation)
+    if @message.save
+      execute_kuma_message(@conversation)
+    end
     redirect_to conversation_messages_path(@conversation)
   end
 
