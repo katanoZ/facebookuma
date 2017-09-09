@@ -7,7 +7,7 @@
 
 <% if @topics.blank?%>
   <p class="margin-top100px"><%= image_tag("kuma_icon", class: "img-responsive center-block") %></p>
-  <p class="h4 text-center text-muted">フォローしたユーザのトピックが表示されるよ！</p>
+  <p class="h4 text-center text-muted">ユーザをフォローするとトピックが表示されるよ！</p>
   <p class="h4 text-center text-muted">ユーザのフォローは<%= link_to "こちら", users_path %>から</p>
   <p class="h4 text-center text-muted">トピックの投稿は<%= link_to "こちら", new_topic_path %>から</p>
 <% else %>
