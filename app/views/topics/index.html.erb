@@ -12,7 +12,7 @@
   <p class="h4 text-center text-muted">トピックの投稿は<%= link_to "こちら", new_topic_path %>から</p>
 <% else %>
   <% @topics.each do |topic| %>
-    <div class="panel panel-default">
+    <div class="panel panel-default margin-top40px">
       <div class="panel-heading">
         <h2 class="panel-title">
             <%= profile_img(topic.user, size: :small) %>&nbsp;&nbsp;投稿者：<%= topic.user.name %>
